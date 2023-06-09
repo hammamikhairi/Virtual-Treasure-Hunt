@@ -1,0 +1,16 @@
+System Log Analysis Report
+
+Date: 2023-03-23
+Time: 08:15:59
+
+Summary:
+File transfer from external device.
+
+Details:
+
+    - Timestamp:         2023-03-23 08:15:59
+    - Source IP Address: 192.168.1.20
+    - Protocol:          USB
+    - Port:              
+    - Action Taken:
+        - Scanned transferred file for malware.

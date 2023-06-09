@@ -1,0 +1,16 @@
+System Log Analysis Report
+
+Date: 2023-02-24
+Time: 15:04:54
+
+Summary:
+A file has been uploaded.
+
+Details:
+
+    - Timestamp:         2023-02-24 15:04:54
+    - Source IP Address: 192.168.1.20
+    - Protocol:          TCP
+    - Port:              21
+    - Action Taken:
+        - The file has been scanned and no threats were detected.

@@ -1,0 +1,16 @@
+System Log Analysis Report
+
+Date: 2023-01-23
+Time: 21:21:57
+
+Summary:
+SSH connection established.
+
+Details:
+
+    - Timestamp:         2023-01-23 21:21:57
+    - Source IP Address: 192.168.1.20
+    - Protocol:          SSH
+    - Port:              22
+    - Action Taken:
+        - Verified user identity and purpose of connection.

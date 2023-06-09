@@ -1,0 +1,23 @@
+System Log Analysis Report
+
+Date: 2023-03-15
+Time: 10:40:34
+
+Summary:
+The system has been compromised by an unauthorized user. The hacker gained access to the system using a backdoor that was created by exploiting a vulnerability in the system's firewall. The hacker used a remote IP address to gain access to the system and steal some information from the machine.
+
+Details:
+
+    - Timestamp:         2023-03-15 10:40:34
+    - Source IP Address: 51.103.122.176
+    - Protocol:          ssh
+    - Port:              22
+
+    - Action Taken:
+        - Administor alerted.
+
+    - Notes:
+        - User left a message : 
+		  ┌─┐┬ ┬┌┐┌┌─┐┌┬┐  ┌┐ ┬ ┬  ┌┬┐┬─┐┌─┐┬┌┐┌┌─┐┬─┐
+		  ├─┘││││││├┤  ││  ├┴┐└┬┘   │ ├┬┘├─┤││││├┤ ├┬┘
+		  ┴  └┴┘┘└┘└─┘─┴┘  └─┘ ┴    ┴ ┴└─┴ ┴┴┘└┘└─┘┴└─

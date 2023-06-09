@@ -1,0 +1,16 @@
+System Log Analysis Report
+
+Date: 2023-01-08
+Time: 05:34:11
+
+Summary:
+A file has been downloaded.
+
+Details:
+
+    - Timestamp:         2023-01-08 05:34:11
+    - Source IP Address: 192.168.1.10
+    - Protocol:          TCP
+    - Port:              443
+    - Action Taken:
+        - The file has been scanned and no threats were detected.
