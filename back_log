@@ -1,4 +1,5 @@
-khairi@ctf-back:~/ctf-back$ go run main.go 
+# The Back log of the backend server (for the memories)
+khairi@ctf-back:~/ctf-back$ go run main.go
 <nil>
 2023/05/07 02:12:46 Connected to DB. <khairi@cdt-db:1433>
 2023/05/07 02:12:59 Requested : <get user <0x2L3N1Z5X8C9V6B4Q0MYK>>
