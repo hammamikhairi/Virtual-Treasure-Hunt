@@ -4,7 +4,6 @@ import (
 	scl "blood/SQLClient"
 	utils "blood/Utils"
 	"encoding/json"
-	"fmt"
 	"os"
 	"time"
 
@@ -17,43 +16,8 @@ type ServerAgent struct {
 
 func ServerAgentInit() ServerAgent {
 	return ServerAgent{
-		scl.OpenConn(),
+		// scl.OpenConn(),
 	}
-}
-
-type OKStatus struct {
-	Msg string
-}
-
-func (ag ServerAgent) GetPlayers(w http.ResponseWriter, req *http.Request) {
-	utils.Log("players")
-
-	// if req.Method != http.MethodPost {
-	// 	w.WriteHeader(http.StatusMethodNotAllowed)
-	// 	return
-	// }
-
-	rows := ag.sqlc.GetRows(
-		fmt.Sprintf(
-			"select * from %s order by LEVEL DESC,  UPDATED_AT DESC",
-			scl.TBN_PLAYERS,
-		),
-	)
-	defer rows.Close()
-
-	players := []Player{}
-
-	for rows.Next() {
-		player := Player{}
-		rows.Scan(&player.Player_Id, &player.Email, &player.Player, &player.Level, &player.Updated_At)
-		players = append(players, player)
-	}
-
-	// ag.sqlc.PushRows([][]any{logRow}, scl.TBN_TRANS)
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	json.NewEncoder(w).Encode(players)
 }
 
 type Player struct {
@@ -64,72 +28,19 @@ type Player struct {
 	Updated_At time.Time `json:"updated_at"`
 }
 
-func (ag *ServerAgent) getPlayerData(playerId string) *Player {
-	rows := ag.sqlc.GetRows(
-		fmt.Sprintf(
-			"select * from %s where PLAYER_ID = '%s'",
-			scl.TBN_PLAYERS,
-			playerId,
-		),
-	)
-	defer rows.Close()
-	rows.Next()
-
-	var player *Player = &Player{}
-	if err := rows.Scan(&player.Player_Id, &player.Email, &player.Player, &player.Level, &player.Updated_At); err != nil {
-		fmt.Println(err)
-		return nil
-	}
-
-	return player
-}
-
-func (ag *ServerAgent) levelUpPlayer(player *Player) error {
-	ag.sqlc.Query(
-		fmt.Sprintf(
-			"UPDATE %s set LEVEL = %d, UPDATED_AT = DATEADD(hour, 1, GETDATE())  where PLAYER_ID = '%s'",
-			scl.TBN_PLAYERS,
-			player.Level+1,
-			player.Player_Id,
-		),
-	)
-	return nil
-}
-
-func (ag *ServerAgent) GetPlayer(w http.ResponseWriter, req *http.Request) {
-	playerId := req.URL.Query().Get("playerId")
-	utils.Log("get user <" + playerId + ">")
-
-	player := ag.getPlayerData(playerId)
-	fmt.Println(playerId)
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-
-	if player == nil {
-		w.WriteHeader(http.StatusBadRequest)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(player)
-}
-
 func (ag *ServerAgent) LevelUp(w http.ResponseWriter, req *http.Request) {
-	playerId, flag, level := req.URL.Query().Get("playerId"), req.URL.Query().Get("flag"), req.URL.Query().Get("level")
-	utils.Log("leveling up <" + playerId + "> with <" + flag + ">")
+	flag, level := req.URL.Query().Get("flag"), req.URL.Query().Get("level")
+	utils.Log("leveling up <LOCAL> with <" + flag + ">")
 
-	player := ag.getPlayerData(playerId)
+	// player := ag.getPlayerData(playerId)
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	if val, _ := SOLUTIONS[level]; val == flag && fmt.Sprint(player.Level) == level {
+	if val, _ := SOLUTIONS[level]; val == flag {
 		w.WriteHeader(http.StatusOK)
-		ag.levelUpPlayer(player)
 		return
 	}
 
 	w.WriteHeader(http.StatusUnauthorized)
-}
-
-var FILES = map[string]string{
-	"1": "first.txt",
 }
 
 const FILES_DIR string = "./Files"
@@ -252,7 +163,7 @@ var levels = map[string]Level{
 			Message: "Oh no, a hacker stole your flag! Good luck getting it back!",
 			Files:   []string{"system_logs.zip"},
 		},
-		Flag: "qsd",
+		Flag: "qsa8Jx6zT9uGyDcN3d",
 	},
 }
 

@@ -2,8 +2,8 @@ import cookies from 'next-cookies';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const BASE_URL = "http://20.111.33.21/"
-// const BASE_URL = "http://localhost:5051/"
+// const BASE_URL = "http://20.111.33.21/"
+const BASE_URL = "http://localhost:5051/"
 const BASE_WEBSITE_URL = "http://localhost:3000/"
 
 

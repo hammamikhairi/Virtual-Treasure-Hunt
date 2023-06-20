@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Audio } from 'react-loader-spinner';
-const BASE_URL = "http://20.111.33.21/"
-// const BASE_URL = "http://localhost:5051/"
+// const BASE_URL = "http://20.111.33.21/"
+const BASE_URL = "http://localhost:5051/"
 
 
 
-function FlagForm({ level, playerId }) {
+function FlagForm({ level }) {
   const [flag, setFlag] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ function FlagForm({ level, playerId }) {
     setError('');
     setLoading(true)
 
-    fetch(`${BASE_URL}levelup?playerId=${playerId}&flag=${flag}&level=${level}`)
+    fetch(`${BASE_URL}levelup?flag=${flag}&level=${level}`)
       .then(response => {
         if (response.ok) {
           if (level == 9) {
@@ -51,7 +51,6 @@ function FlagForm({ level, playerId }) {
           color="green"
           ariaLabel="loading"
           wrapperStyle
-          wrapperClass
         /> :
         <>Submit</>
       }
